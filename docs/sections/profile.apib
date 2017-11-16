@@ -1,14 +1,16 @@
-## Profile [/users/{userId}]
+## Profile [/users/{userId}/{age}]
 
 + Parameters
 
     + userId: h1u4Rye9 (string, required) - A unique user identifier.<br />
       Use `me` to interact with the current user.
 
+    + age: 30 (number, optional) - The user's age.
+
 ### Read [GET]
 Add more information about this request.
 
-+ Request Example (application/json)
++ Request (application/json)
 
     + Headers
 
@@ -123,7 +125,7 @@ Profiles may only be updated by their owners.
 # Attempting to update a different user's profile will be rejected with a `403` response.
 :::
 
-+ Request Example
++ Request
 
     + Headers
 
@@ -272,7 +274,7 @@ Storing locations is only available to the current user.
 # Attempting to store a location for a different user will be rejected with a `403` response.
 :::
 
-+ Request Example (application/json)
++ Request (application/json)
 
     + Headers
 
@@ -389,7 +391,7 @@ Storing locations is only available to the current user.
 
 ### Report [POST]
 
-+ Request Example (application/json)
++ Request (application/json)
 
     + Headers
 
