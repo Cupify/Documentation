@@ -1,0 +1,38 @@
+{
+  "name": "cupify_documentation",
+  "version": "0.0.1",
+  "description": "Cupify API documentation.",
+  "scripts": {
+    "serve": "aglio -i ./docs/index.apib --theme-template triple --theme-variables flatly -s",
+    "build": "aglio -i ./docs/index.apib --theme-template triple --theme-variables flatly -o ./public/index.html",
+    "dredd": "npm run hercule && dredd",
+    "hercule": "hercule docs/index.apib --syntax aglio -o docs/full.apib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/cupify/Documentation.git"
+  },
+  "engines": {
+    "node": "8.9.1"
+  },
+  "keywords": [
+    "cupify",
+    "api",
+    "documentation"
+  ],
+  "author": {
+    "name": "Stefan Aichholzer",
+    "email": "play@analogbird.com",
+    "url": "https://github.com/aichholzer"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cupify/Documentation/issues"
+  },
+  "homepage": "https://github.com/cupify/Documentation#readme",
+  "devDependencies": {
+    "aglio": "^2.3.0",
+    "dredd": "^4.7.0",
+    "hercule": "^4.1.0"
+  }
+}

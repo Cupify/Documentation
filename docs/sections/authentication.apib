@@ -1,0 +1,201 @@
+## Session [/auth]
+
+### Login [POST]
+Add more information about this request.
+
++ Request Facebook (application/json)
+
+    + Body
+
+            {
+              "facebookToken": "fdsfsdfs"
+            }
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "facebookToken": {
+                  "type": "string",
+                  "description": "Facebook session token."
+                }
+              },
+              "required": ["facebookToken"]
+            }
+
++ Request Google (application/json)
+
+    + Body
+
+            {
+              "googleToken": "fdsfsdfs"
+            }
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "googleToken": {
+                  "type": "string",
+                  "description": "Google session token."
+                }
+              },
+              "required": ["googleToken"]
+            }
+
++ Request Twitter (application/json)
+
+    + Body
+
+            {
+              "twitterToken": "fdsfsdfs"
+            }
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "twitterToken": {
+                  "type": "string",
+                  "description": "Twitter session token."
+                }
+              },
+              "required": ["twitterToken"]
+            }
+
++ Response 200 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 200,
+              "cupify": {
+                "userId": "h1u4Rye9",
+                "token": "dasdasdasdasda",
+                "secret": "dasdaf"
+              }
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "cupify": {
+                  "type": "object",
+                  "properties": {
+                    "userId": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
+                    },
+                    "secret": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["token", "secret"]
+                }
+              },
+              "required": ["status", "cupify"]
+            }
+
++ Response 401 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 401,
+              "error": "The provided credentials are not valid."
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "error": {
+                  "type": "string"
+                }
+              },
+              "required": ["status", "error"]
+            }
+
+
+### Logout [DELETE]
+Add more information about this request.
+
++ Request Example
+
+    + Headers
+
+            Authorization: fsdfsfsfsdfsdfsdfd
+
++ Response 200 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 200
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": ["status"]
+            }
+
++ Response 403 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 403,
+              "error": "The provided authentication token is not valid."
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "error": {
+                  "type": "string"
+                }
+              },
+              "required": ["status", "error"]
+            }
