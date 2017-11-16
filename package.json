@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "Cupify API documentation.",
   "scripts": {
-    "serve": "aglio -i ./docs/index.apib --theme-template triple --theme-variables flatly -s",
-    "build": "aglio -i ./docs/index.apib --theme-template triple --theme-variables flatly -o ./public/index.html",
+    "serve": "NOCACHE=1 aglio -i ./docs/index.apib --theme-template ./assets/template/index.jade --theme-variables ./assets/style.less -s",
+    "build": "aglio -i ./docs/index.apib --theme-template ./assets/template/index.jade --theme-variables ./assets/style.less -o ./public/index.html",
     "dredd": "npm run hercule && dredd",
     "hercule": "hercule docs/index.apib --syntax aglio -o docs/full.apib"
   },

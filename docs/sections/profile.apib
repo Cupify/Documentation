@@ -2,9 +2,10 @@
 
 + Parameters
 
-    + userId: h1u4Rye9 (string, required) - A unique user identifier.
+    + userId: h1u4Rye9 (string, required) - A unique user identifier.<br />
+      Use `me` to interact with the current user.
 
-### Get [GET]
+### Read [GET]
 Add more information about this request.
 
 + Request Example (application/json)
@@ -12,25 +13,6 @@ Add more information about this request.
     + Headers
 
             Authorization: sdfsfsdfsfdsfsfsdfdsfs
-
-    + Body
-
-            {
-              "facebookToken": "fdsfsdfs"
-            }
-
-    + Schema
-
-            {
-              "type": "object",
-              "properties": {
-                "facebookToken": {
-                  "type": "string",
-                  "description": "Facebook session token."
-                }
-              },
-              "required": ["facebookToken"]
-            }
 
 + Response 200 (application/json)
 
@@ -137,11 +119,64 @@ Add more information about this request.
 ### Update [PUT]
 Profiles may only be updated by their owners.
 
+::: warning
+# Attempting to update a different user's profile will be rejected with a `403` response.
+:::
+
 + Request Example
 
     + Headers
 
             Authorization: fsdfsfsfsdfsdfsdfd
+
+    + Body
+
+            {
+              "email": "hello@cupify.me",
+              "password": "54321",
+              "gender": "male",
+              "dob": 315964800,
+              "status": "single",
+              "about": "Hello, I am a musician."
+            }
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "gender": {
+                  "type": "string",
+                  "enum": [
+                    "agender",
+                    "intergender",
+                    "female",
+                    "male",
+                    "none",
+                    "non-binary",
+                    "neutrois",
+                    "transgender-man",
+                    "transgender-woman",
+                    "transsexual"
+                  ]
+                },
+                "dob": {
+                  "type": "integer"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "about": {
+                  "type": "string"
+                }
+              }
+            }
 
 + Response 200 (application/json)
 
@@ -195,15 +230,47 @@ Profiles may only be updated by their owners.
               "required": ["status", "error"]
             }
 
++ Response 409 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 409,
+              "error": "The provided email address is already in use."
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "error": {
+                  "type": "string"
+                }
+              },
+              "required": ["status", "error"]
+            }
 
 ## Location [/users/{userId}/location]
 
 + Parameters
 
-    + userId: h1u4Rye9 (string, required) - A unique user identifier.
+    + userId: h1u4Rye9 (string, required) - A unique user identifier.<br />
+    Use `me` to interact with the current user.
 
-### Location [POST]
-Add more information about this request.
+### Save location [POST]
+Storing locations is only available to the current user.
+
+::: warning
+# Attempting to store a location for a different user will be rejected with a `403` response.
+:::
 
 + Request Example (application/json)
 
@@ -285,6 +352,34 @@ Add more information about this request.
               "required": ["status", "error"]
             }
 
++ Response 409 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 409,
+              "error": "The provided coordinates are not valid."
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "error": {
+                  "type": "string"
+                }
+              },
+              "required": ["status", "error"]
+            }
+
 
 ## Report [/users/{userId}/report]
 
@@ -293,7 +388,6 @@ Add more information about this request.
     + userId: h1u4Rye9 (string, required) - A unique user identifier.
 
 ### Report [POST]
-Add more information about this request.
 
 + Request Example (application/json)
 

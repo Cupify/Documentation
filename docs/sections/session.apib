@@ -1,9 +1,33 @@
-## Session [/auth]
-
+## Authentication [/auth]
 ### Login [POST]
-Add more information about this request.
 
-+ Request Facebook (application/json)
++ Request Login with credentials (application/json)
+
+    + Body
+
+            {
+              "username": "cupify",
+              "password": "12345"
+            }
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "description": "Cupify account username."
+                },
+                "password": {
+                  "type": "string",
+                  "description": "Cupify account password."
+                }
+              },
+              "required": ["username", "password"]
+            }
+
++ Request Login with Facebook (application/json)
 
     + Body
 
@@ -24,7 +48,7 @@ Add more information about this request.
               "required": ["facebookToken"]
             }
 
-+ Request Google (application/json)
++ Request Login with Google (application/json)
 
     + Body
 
@@ -45,7 +69,7 @@ Add more information about this request.
               "required": ["googleToken"]
             }
 
-+ Request Twitter (application/json)
++ Request Login with Twitter (application/json)
 
     + Body
 
