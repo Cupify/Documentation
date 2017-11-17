@@ -165,7 +165,7 @@ function autoCollapse() {
         // our total and then remove it from our list of candidates
         // that can be collapsed.
         itemsHeight -= itemHeight;
-        toggleCollapseNav({target: sortedItems[i].children[0]}, true);
+        toggleCollapseNav({ target: sortedItems[i].children[0] }, true);
         sortedItems.splice(i, 1);
         break;
       }
@@ -209,7 +209,7 @@ function init() {
         navItems[i].onclick = toggleCollapseNav;
 
         // Show all by default
-        toggleCollapseNav({target: navItems[i].children[0]});
+        toggleCollapseNav({target: navItems[i].children[0]}, true);
     }
 }
 

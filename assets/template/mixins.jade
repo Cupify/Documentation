@@ -26,7 +26,7 @@ mixin Nav()
             .resource-group
                 .heading
                   .chevron
-                    i.open.fa.fa-angle-down
+                    i.fa.fa-angle-down
                   a(href='#top') Overview
                 .collapse-content
                   ul: each item in self.api.navItems
@@ -36,8 +36,8 @@ mixin Nav()
             .resource-group
                 .heading
                   .chevron
-                    i.open.fa.fa-angle-down
-                  a.collapseGroup(href=resourceGroup.elementLink)!= resourceGroup.name || 'Resource Group'
+                    i.fa.fa-angle-down
+                  a.collapseGroup(href=resourceGroup.elementLink)!= resourceGroup.name
                 .collapse-content
                   ul
                     each item in resourceGroup.navItems || []
@@ -46,7 +46,8 @@ mixin Nav()
                     each resource in resourceGroup.resources || []
                       li
                           if !self.condenseNav || (resource.actions.length != 1)
-                              a(href=resource.elementLink)!= resource.name || 'Resource'
+                              if resource.name
+                                  a(href=resource.elementLink)!= resource.name
                               ul: each action in resource.actions || []
                                   li: a(href=action.elementLink)
                                     +Badge(action.method)
@@ -158,7 +159,7 @@ mixin Content()
                 img(src=meta.value, alt='Cupify', style='width:100%;')
     .right
         h3.currentHost
-          | Host: 
+          | Host:
           a(href=self.api.host)= self.api.host
     .middle
         if self.api.descriptionHtml
@@ -226,7 +227,7 @@ mixin Content()
                         h4.action-heading
                             .name!= action.name
                             a.method(class=action.methodLower, href=action.elementLink)
-                                = action.method  
+                                = action.method
                             code.uri
                                 span.hostname= self.api.host
                                 != self.urldec(action.uriTemplate)
