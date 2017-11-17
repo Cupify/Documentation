@@ -1,14 +1,121 @@
-## Profile [/users/{userId}]
+## Arrow [/arrows/{arrowId}]
+
+### Create [POST]
+Add more information about this request.
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: sdfsfsdfsfdsfsfsdfdsfs
+
++ Response 200 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 200,
+              "user": {
+                "username": "cupify",
+                "avatar": "https://cdn.cupify.me/avatar/h1u4Rye9.webp",
+                "lastSeen": 1510795171
+              }
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "integer"
+                    },
+                    "avatar": {
+                      "type": "integer"
+                    },
+                    "lastSeen": {
+                      "type": "integer",
+                      "description": "Unix timestamp of user's last activity."
+                    }
+                  },
+                  "required": ["username", "avatar", "lastSeen"]
+                }
+              },
+              "required": ["status", "user"]
+            }
+
++ Response 403 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 401,
+              "error": "The provided credentials are not valid."
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "error": {
+                  "type": "string"
+                }
+              },
+              "required": ["status", "error"]
+            }
+
++ Response 404 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 401,
+              "error": "The requested user could not be found."
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "error": {
+                  "type": "string"
+                }
+              },
+              "required": ["status", "error"]
+            }
 
 ### Read [GET]
-::: note
-# Only public profiles may be read.<br />Attempting to read non-public profiles will be rejected with a `404` response.
-:::
+Add more information about this request.
 
 + Parameters
 
-    + userId: h1u4Rye9 (string, required) - A unique user identifier.<br />
-      Use `me` to interact with the current user.
+    + arrowId: hY7eRp9qB3 (string, required) - A unique arrow identifier.
 
 + Request (application/json)
 
@@ -119,9 +226,11 @@
 
 
 ### Update [PUT]
-::: warning
-# Attempting to update another user's profile will be rejected with a `403` response.
-:::
+Arrows may only be updated by their owners.
+
++ Parameters
+
+    + arrowId: hY7eRp9qB3 (string, required) - A unique arrow identifier.
 
 + Request
 
@@ -137,8 +246,7 @@
               "gender": "male",
               "dob": 315964800,
               "status": "single",
-              "about": "Hello, I am a musician.",
-              "public": true
+              "about": "Hello, I am a musician."
             }
 
     + Schema
@@ -175,9 +283,6 @@
                 },
                 "about": {
                   "type": "string"
-                },
-                "public": {
-                  "type": "boolean"
                 }
               }
             }
@@ -262,77 +367,12 @@
               "required": ["status", "error"]
             }
 
-
 ### Delete [DELETE]
-::: warning
-# Attempting to delete another user's profile will be rejected with a `403` response.
-:::
+Add more information about this request.
 
-+ Request
++ Parameters
 
-    + Headers
-
-            Authorization: fsdfsfsfsdfsdfsdfd
-
-+ Response 200 (application/json)
-
-      + Headers
-
-            Content-Transfer-Encoding: application/gzip
-
-      + Body
-
-            {
-              "status": 200
-            }
-
-      + Schema
-
-            {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "integer"
-                }
-              },
-              "required": ["status"]
-            }
-
-+ Response 403 (application/json)
-
-      + Headers
-
-            Content-Transfer-Encoding: application/gzip
-
-      + Body
-
-            {
-              "status": 403,
-              "error": "The provided authentication token is not valid."
-            }
-
-      + Schema
-
-            {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "integer"
-                },
-                "error": {
-                  "type": "string"
-                }
-              },
-              "required": ["status", "error"]
-            }
-
-
-## Location [/users/location]
-
-### Store location [POST]
-::: warning
-# Attempting to store another user's location will be rejected with a `403` response.
-:::
+    + arrowId: hY7eRp9qB3 (string, required) - A unique arrow identifier.
 
 + Request (application/json)
 
@@ -340,28 +380,6 @@
 
             Authorization: sdfsfsdfsfdsfsfsdfdsfs
 
-    + Body
-
-            {
-              "lat": 37.77493,
-              "lon": -122.419416
-            }
-
-    + Schema
-
-            {
-              "type": "object",
-              "properties": {
-                "lat": {
-                  "type": "number"
-                },
-                "lon": {
-                  "type": "number"
-                }
-              },
-              "required": ["lat", "lon"]
-            }
-
 + Response 200 (application/json)
 
       + Headers
@@ -371,7 +389,12 @@
       + Body
 
             {
-              "status": 200
+              "status": 200,
+              "user": {
+                "username": "cupify",
+                "avatar": "https://cdn.cupify.me/avatar/h1u4Rye9.webp",
+                "lastSeen": 1510795171
+              }
             }
 
       + Schema
@@ -381,9 +404,25 @@
               "properties": {
                 "status": {
                   "type": "integer"
+                },
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "integer"
+                    },
+                    "avatar": {
+                      "type": "integer"
+                    },
+                    "lastSeen": {
+                      "type": "integer",
+                      "description": "Unix timestamp of user's last activity."
+                    }
+                  },
+                  "required": ["username", "avatar", "lastSeen"]
                 }
               },
-              "required": ["status"]
+              "required": ["status", "user"]
             }
 
 + Response 403 (application/json)
@@ -395,8 +434,8 @@
       + Body
 
             {
-              "status": 403,
-              "error": "The provided authentication token is not valid."
+              "status": 401,
+              "error": "The provided credentials are not valid."
             }
 
       + Schema
@@ -414,7 +453,7 @@
               "required": ["status", "error"]
             }
 
-+ Response 409 (application/json)
++ Response 404 (application/json)
 
       + Headers
 
@@ -423,8 +462,8 @@
       + Body
 
             {
-              "status": 409,
-              "error": "The provided coordinates are not valid."
+              "status": 401,
+              "error": "The requested user could not be found."
             }
 
       + Schema
@@ -443,11 +482,11 @@
             }
 
 
-## Report [/users/{userId}/report]
+## Report [/arrows/{arrowId}/report]
 
 + Parameters
 
-    + userId: h1u4Rye9 (string, required) - A unique user identifier.
+    + arrowId: hY7eRp9qB3 (string, required) - A unique arrow identifier.
 
 ### Report [POST]
 
@@ -538,7 +577,7 @@
 
             {
               "status": 401,
-              "error": "The requested user could not be found."
+              "error": "The requested arrow could not be found."
             }
 
       + Schema
