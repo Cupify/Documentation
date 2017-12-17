@@ -1,0 +1,143 @@
+### Update [PUT]
+::: warning
+# Attempting to update another user's profile will be rejected with a `403` response.
+:::
+
++ Request
+
+    + Headers
+
+            Authorization: bd3c37e77fca3a513947991ca4d3c40bf0098a4b
+
+    + Body
+
+            {
+              "email": "hello@cupify.me",
+              "password": "54321",
+              "gender": "male",
+              "dob": 315964800,
+              "status": "single",
+              "about": "Hello, I am a musician.",
+              "public": true
+            }
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "gender": {
+                  "type": "string",
+                  "enum": [
+                    "agender",
+                    "intergender",
+                    "female",
+                    "male",
+                    "none",
+                    "non-binary",
+                    "neutrois",
+                    "transgender-man",
+                    "transgender-woman",
+                    "transsexual"
+                  ]
+                },
+                "dob": {
+                  "type": "integer"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "about": {
+                  "type": "string"
+                },
+                "public": {
+                  "type": "boolean"
+                }
+              }
+            }
+
++ Response 200 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 200
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": ["status"]
+            }
+
++ Response 403 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 403,
+              "error": "Invalid authentication token."
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "error": {
+                  "type": "string"
+                }
+              },
+              "required": ["status", "error"]
+            }
+
++ Response 409 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 409,
+              "error": "Email already in use."
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "error": {
+                  "type": "string"
+                }
+              },
+              "required": ["status", "error"]
+            }

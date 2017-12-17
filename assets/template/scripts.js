@@ -1,7 +1,3 @@
-/* eslint-env browser */
-/* eslint quotes: [2, "single"] */
-'use strict';
-
 /*
   Determine if a string ends with another string.
 */
@@ -210,6 +206,12 @@ function init() {
 
         // Show all by default
         toggleCollapseNav({target: navItems[i].children[0]}, true);
+    }
+
+    // Hide permalinks
+    var links = document.querySelectorAll('.permalink');
+    for (i = 0; i < links.length; i++) {
+        links[i].remove();
     }
 }
 

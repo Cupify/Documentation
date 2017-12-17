@@ -1,0 +1,118 @@
+### Read [GET]
+:::warning
+# Only public profiles may be read.<br />Attempting to read non-public profiles will be rejected with a `404` response.
+:::
+
+<sup>*</sup> Currently logged-in user.
+
++ Parameters
+
+    + userId: h1u4Rye9 (string, required) - A unique user identifier.<br />
+      Use `me` to fetch the current user <sup>*</sup>.
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: bd3c37e77fca3a513947991ca4d3c40bf0098a4b
+
++ Response 200 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 200,
+              "user": {
+                "username": "cupify",
+                "avatar": "https://cdn.cupify.me/avatar/h1u4Rye9.webp",
+                "lastSeen": 1510795171
+              }
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "integer"
+                    },
+                    "avatar": {
+                      "type": "integer"
+                    },
+                    "lastSeen": {
+                      "type": "integer",
+                      "description": "Unix timestamp of user's last activity."
+                    }
+                  },
+                  "required": ["username", "avatar", "lastSeen"]
+                }
+              },
+              "required": ["status", "user"]
+            }
+
++ Response 403 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 403,
+              "error": "Invalid authentication token."
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "error": {
+                  "type": "string"
+                }
+              },
+              "required": ["status", "error"]
+            }
+
++ Response 404 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 404,
+              "error": "User not found."
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "error": {
+                  "type": "string"
+                }
+              },
+              "required": ["status", "error"]
+            }

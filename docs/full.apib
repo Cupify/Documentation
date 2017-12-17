@@ -126,7 +126,7 @@ Add more information about this request.
 
             {
               "status": 401,
-              "error": "The provided credentials are not valid."
+              "error": "Invalid credentials."
             }
 
       + Schema
@@ -152,7 +152,7 @@ Add more information about this request.
 
     + Headers
 
-            Authorization: fsdfsfsfsdfsdfsdfd
+            Authorization: bd3c37e77fca3a513947991ca4d3c40bf0098a4b
 
 + Response 200 (application/json)
 
@@ -188,7 +188,7 @@ Add more information about this request.
 
             {
               "status": 403,
-              "error": "The provided authentication token is not valid."
+              "error": "Invalid authentication token."
             }
 
       + Schema
@@ -295,8 +295,8 @@ Add more information about this request.
       + Body
 
             {
-              "status": 401,
-              "error": "The provided credentials are not valid."
+              "status": 403,
+              "error": "Invalid credentials."
             }
 
       + Schema
@@ -323,8 +323,8 @@ Add more information about this request.
       + Body
 
             {
-              "status": 401,
-              "error": "The requested user could not be found."
+              "status": 404,
+              "error": "User not found."
             }
 
       + Schema
@@ -350,7 +350,7 @@ Profiles may only be updated by their owners.
 
     + Headers
 
-            Authorization: fsdfsfsfsdfsdfsdfd
+            Authorization: bd3c37e77fca3a513947991ca4d3c40bf0098a4b
 
 + Response 200 (application/json)
 
@@ -386,7 +386,7 @@ Profiles may only be updated by their owners.
 
             {
               "status": 403,
-              "error": "The provided authentication token is not valid."
+              "error": "Invalid authentication token."
             }
 
       + Schema
@@ -476,7 +476,7 @@ Add more information about this request.
 
             {
               "status": 403,
-              "error": "The provided authentication token is not valid."
+              "error": "Invalid authentication token."
             }
 
       + Schema
@@ -563,7 +563,7 @@ Add more information about this request.
 
             {
               "status": 403,
-              "error": "The provided authentication token is not valid."
+              "error": "Invalid authentication token."
             }
 
       + Schema
@@ -590,7 +590,7 @@ Add more information about this request.
       + Body
 
             {
-              "status": 401,
+              "status": 404,
               "error": "The requested user could not be found."
             }
 

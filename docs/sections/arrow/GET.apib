@@ -1,0 +1,302 @@
+### Read [GET]
+
++ Parameters
+
+    + arrowId: hY7eRp9qB3 (string, required) - A unique arrow identifier. Skip this in order to list all arrows.
+
++ Request Single arrow (application/json)
+
+    + Headers
+
+            Authorization: bd3c37e77fca3a513947991ca4d3c40bf0098a4b
+
++ Response 200 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 200,
+              "arrow": {
+                "userId": "h1u4Rye9",
+                "date": 3552663511,
+                "message": "I am looking for the one, the real one I saw on a bike this morning!",
+                "medium": "bike",
+                "location": {
+                  "lat": 37.77493,
+                  "lon": -122.419416
+                },
+                "tally": {
+                  "views": 2781,
+                  "replies": 1599
+                }
+              }
+            }
+
+      + Schema
+
+            {
+              "type": "object":
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "arrow": {
+                  "type": "object",
+                  "properties": {
+                    "userId": {
+                      "type": "string"
+                    },
+                    "date": {
+                      "type": "integer",
+                      "description": "Unix timestamp of the event."
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "medium": {
+                      "type": "string",
+                      "enum": [
+                        "bike",
+                        "boat",
+                        "bus",
+                        "car",
+                        "metro",
+                        "plane",
+                        "running",
+                        "ship",
+                        "sitting",
+                        "train",
+                        "walking"
+                      ]
+                    },
+                    "location": {
+                      "type": "object",
+                      "properties": {
+                        "lat": {
+                          "type": "number"
+                        },
+                        "lon": {
+                          "type": "number"
+                        }
+                      },
+                      "required": ["lat", "lon"]
+                    },
+                    "tally": {
+                      "type": "object",
+                      "properties": {
+                        "views": {
+                          "type": "integer"
+                        },
+                        "replies": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": ["views", "replies"]
+                    }
+                  },
+                  "required": ["userId", "date", "message", "medium", "tally"]
+                }
+              }
+            }
+
++ Response 403 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 403,
+              "error": "Invalid authentication token."
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "error": {
+                  "type": "string"
+                }
+              },
+              "required": ["status", "error"]
+            }
+
++ Response 404 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 404,
+              "error": "Arrow not found."
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "error": {
+                  "type": "string"
+                }
+              },
+              "required": ["status", "error"]
+            }
+
++ Parameters
+
+    + radius: 1 (number, optional) - Radius, in kilometers, for searched area.
+      + Default: 3
+    + before (number, optional) - Only list arrows created before this date.
+    + after (number, optional) - Only list arrows created after this date.
+    + limit: 5 (number, optional) - Limit to number of arrows to list.
+      + Default: 25
+
++ Request Multiple arrows (application/json)
+
+    + Headers
+
+            Authorization: bd3c37e77fca3a513947991ca4d3c40bf0098a4b
+
++ Response 200 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 200,
+              "arrows": [
+                {
+                  "userId": "h1u4Rye9",
+                  "date": 3552663511,
+                  "message": "I am looking for the one, the real one I saw on a bike this morning!",
+                  "medium": "bike",
+                  "location": {
+                    "lat": 37.77493,
+                    "lon": -122.419416
+                  },
+                  "tally": {
+                    "views": 2781,
+                    "replies": 1599
+                  }
+                },
+                ...
+              ]
+            }
+
+      + Schema
+
+            {
+              "type": "object":
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "arrows": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "userId": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "integer",
+                        "description": "Unix timestamp of the event."
+                      },
+                      "message": {
+                        "type": "string"
+                      },
+                      "medium": {
+                        "type": "string",
+                        "enum": [
+                          "bike",
+                          "boat",
+                          "bus",
+                          "car",
+                          "metro",
+                          "plane",
+                          "running",
+                          "ship",
+                          "sitting",
+                          "train",
+                          "walking"
+                        ]
+                      },
+                      "location": {
+                        "type": "object",
+                        "properties": {
+                          "lat": {
+                            "type": "number"
+                          },
+                          "lon": {
+                            "type": "number"
+                          }
+                        },
+                        "required": ["lat", "lon"]
+                      },
+                      "tally": {
+                        "type": "object",
+                        "properties": {
+                          "views": {
+                            "type": "integer"
+                          },
+                          "replies": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": ["views", "replies"]
+                      }
+                    },
+                    "required": ["userId", "date", "message", "medium", "tally"]
+                  }
+                }
+              }
+            }
+
++ Response 403 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 403,
+              "error": "Invalid authentication token."
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "error": {
+                  "type": "string"
+                }
+              },
+              "required": ["status", "error"]
+            }

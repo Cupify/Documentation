@@ -1,0 +1,59 @@
+### Logout [DELETE]
+
++ Request
+
+    + Headers
+
+            Authorization: bd3c37e77fca3a513947991ca4d3c40bf0098a4b
+
++ Response 200 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 200
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": ["status"]
+            }
+
++ Response 403 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 403,
+              "error": "Invalid authentication token."
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "error": {
+                  "type": "string"
+                }
+              },
+              "required": ["status", "error"]
+            }
