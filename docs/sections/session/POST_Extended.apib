@@ -1,0 +1,162 @@
+### Login [POST]
+
++ Request Credentials (application/json)
+
+    + Body
+
+            {
+              "username": "cupify",
+              "password": "12345"
+            }
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "description": "Cupify account username or email."
+                },
+                "password": {
+                  "type": "string",
+                  "description": "Cupify account password."
+                }
+              },
+              "required": ["username", "password"]
+            }
+
++ Request Facebook (application/json)
+
+    + Body
+
+            {
+              "facebook": "fdsfsdfs"
+            }
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "facebook": {
+                  "type": "string",
+                  "description": "Facebook session token."
+                }
+              },
+              "required": ["facebookToken"]
+            }
+
++ Request Google (application/json)
+
+    + Body
+
+            {
+              "google": "fdsfsdfs"
+            }
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "google": {
+                  "type": "string",
+                  "description": "Google session token."
+                }
+              },
+              "required": ["googleToken"]
+            }
+
++ Request Twitter (application/json)
+
+    + Body
+
+            {
+              "twitter": "fdsfsdfs"
+            }
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "twitter": {
+                  "type": "string",
+                  "description": "Twitter session token."
+                }
+              },
+              "required": ["twitterToken"]
+            }
+
++ Response 200 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 200,
+              "cupify": {
+                "userId": "h1u4Rye9",
+                "token": "dasdasdasdasda",
+                "secret": "dasdaf"
+              }
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "cupify": {
+                  "type": "object",
+                  "properties": {
+                    "userId": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
+                    },
+                    "secret": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["token", "secret"]
+                }
+              },
+              "required": ["status", "cupify"]
+            }
+
++ Response 401 (application/json)
+
+      + Headers
+
+            Content-Transfer-Encoding: application/gzip
+
+      + Body
+
+            {
+              "status": 401,
+              "error": "Invalid credentials."
+            }
+
+      + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                },
+                "error": {
+                  "type": "string"
+                }
+              },
+              "required": ["status", "error"]
+            }
