@@ -18,7 +18,7 @@
                   "description": "Facebook session token."
                 }
               },
-              "required": ["facebookToken"]
+              "required": ["facebook"]
             }
 
 + Response 200 (application/json)
@@ -33,8 +33,7 @@
               "status": 200,
               "session": {
                 "userId": "h1u4Rye9",
-                "token": "dasdasdasdasda",
-                "secret": "dasdaf"
+                "secret": "jWx2P0c$ju...jU3dxizzWp9"
               }
             }
 
@@ -52,15 +51,12 @@
                     "userId": {
                       "type": "string"
                     },
-                    "token": {
-                      "type": "string"
-                    },
                     "secret": {
                       "type": "string"
                     }
                   },
-                  "required": ["token", "secret"]
+                  "required": ["userId", "token", "secret"]
                 }
               },
-              "required": ["status", "cupify"]
+              "required": ["status", "session"]
             }
